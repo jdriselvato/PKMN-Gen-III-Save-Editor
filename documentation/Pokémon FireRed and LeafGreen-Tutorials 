@@ -1,0 +1,1055 @@
+{{tutorials|game=Pokémon FireRed and LeafGreen}}
+
+==Hex address to wild Pokemon==
+
+NOTE: This hacking I test in EUROPE (Spanish) version games.
+
+Go to 3C4550 address corresponding to Route 101 at the beginning of the game.
+
+Then, in these address change the wild pokemon code, with the hex pokemon code that you like appear.
+
+==Hex address to Poke Market in first town==
+
+NOTE: This hacking I test in EUROPE (Spanish) version games.
+
+Go to 16A330 address showing the codes first town.
+
+Then you can change the code of first item that they sell you, to other code, for example a MasterBall (code 0100).
+
+= More Tutorials ==
+
+In this tut I will teach you how to change the floor number.
+
+Before: http://img503.imageshack.us/img503/3886/beforefloorchangeid3.png
+
+First switch to proffesonal view: http://img258.imageshack.us/img258/1645/beforeproffesonalviewsb3.png
+
+Then go to the value in the red square: http://img443.imageshack.us/img443/3182/beforechangefloortt2.png
+
+Edit it like so: Floor two: http://img215.imageshack.us/img215/9263/floor2lt9.png
+
+you get the results:
+two: http://img443.imageshack.us/img443/7397/floor2be3.png
+
+P.S this is in hex so u need to do A for ten etc P.S you can put whatever u want like add more zeros so u can reach 100 floors! Or write A4 for 20 floors!(This works for BF, but the values go by the set values posted below: http://img259.imageshack.us/img259/8475/overtenjc4.png
+
+For BFloor use 7FX03 the x is the value ex: F=1 E=2 D=3 C=4 B=5 A=6 9=7 8=6 7=5 6=4 5=3 4=2 3=1 2=0 1 and 0 do nothing.(These values are for BF only!)
+heres a pic: http://img510.imageshack.us/img510/4551/bf2gw3.png
+
+It makes: http://img413.imageshack.us/img413/4381/belowfloorkm9.png
+
+- Stolen from a forum
+
+
+
+Hex tutorial
+** - Byte
+xxxxxx - pointer
+$$$$ - word
+-=-=-=-=- - money amount
+nnnn - numerical assigned
+yyyy - values stored
+mmmm - memory location
+
+00= nothing
+
+01= nothing
+
+02= end
+
+03= return
+
+04= call 04xxxxxx08 fill the x's with the offset
+
+05= goto 05xxxxxx08 fill the x's with offset
+
+06= if goto **06xxxxxx08 fill the x's with offsets the *'s can be 
+
+ like compare (21) or true, false ect.
+
+determine conditoins:
+   00 - Lower (<<), also FALSE 
+　　　01 - Equal (==), also TRUE 　　　
+   02 - Bigger (>>)  
+　　　03 - Lower or equal (>=)
+　　　04 - Bigger or equal (<=) 
+　　　05 - Not equal (!=)
+
+ 0F 00 F7 CA 20 08 message 09 YES 05 NO 
+
+07= call if **xxxxxx08 You know what the symbols mean now.
+
+08 ** - Jumpstd
+
+09=  (callstd / boxset) 
+
+message is after the command 0F (msgbox) specified 
+04- button to close box( it won't close on its own)
+05- yes/no options
+06- normal message box
+
+0F 00 xx xx xx 08 (msgbox/message)
+xx xx xx offset of the text use 09 00 to display text.
+
+0D - Killscript
+
+1A $$$$ $$$$ -copyvarifnotzero
+
+1B $$$$ $$$$ - Comparevar
+
+1C $$$$ ** -comparevartobyte
+
+11 ** xxxxxx - writebytetooffset (** is what is to be written)
+
+12 00 xxxxxx - loadbytefrompointer
+
+16 xx xx nn nn= setvar (xx xx memory location) (nn nn is assigned 
+
+a numerical value)
+
+19 xx xx yy yy= copyvar (xx xx memory location)(yy yy values 
+
+stored)
+
+21 xx xx= compare nn nn You know what the symbols mean
+
+23 xxxxxx - callasm
+
+25 xx xx= special 
+
+26 $$$$ $$$$ - special2
+
+28 ** ** -pause
+
+29 $$$$ - setflag
+
+2A xx xx= clearflag
+
+Flag xx xx  (People ID event)
+
+People # xx xx is in reverse order (93 00 to 00 93)
+
+2B xx xx= checkflag (the flag number otherwise 0)
+
+30 A1 xx xx 02 00= cry xx is the cry number
+
+31 **= fanfare ** the sound number
+
+4F ****xx xx xx xx 08= applymovent
+character movement:
+peopl# is **
+****=FF 00 is main character
+0F 80 for npc
+xx xx xx offset data is stored
+
+32 - waitfanfare
+
+33 $$$$ - playsound
+
+34 - fadedefault
+
+35 $$$$ - fadesound
+
+37 - fadeout
+
+38 - fadein
+
+39 ** ** ** -Warp
+
+45 $$$$ $$$$ - removeitem
+
+47 $$$$ -checkitem
+
+50 00 00= pause (perfect fast pause.)
+
+51 00 00 -pausemove
+
+53 $$$$ - vanishsprite
+
+55 $$$$ - revealsprite
+
+57 $$$$ $$$$ $$$$ -movesprite
+
+5A= faceplayer
+turns the sprite to face player
+
+5C ** $$$$ 00 00 xxxxxx xxxxxx -trianerbattle
+
+60 $$$$ - checktrainer
+
+61 $$$$ - disabletrainer
+
+62 $$$$ - Enabletrainer
+
+68 - close boxset 4
+
+66 - waitmsgbox2 (follows msgbox2)
+
+67 xxxxxx - msgbox2(Useful with multi)
+
+69= sprite lock 
+6a= hero lock
+
+6b= sprite release
+6c= hero release
+
+6F ** ** ** ** - Multi
+
+75 $$$$ $$$$ $$$$ - Pokepic box
+
+76 - Hide pokepic
+
+7D ** $$$$ - displayname
+
+83 ** $$$$ - displayvariable
+
+86 xxxxxx - pokemart
+
+90 -= -= -= -= 00 - givemoney
+
+91 -= -= -= -= 00 - takemoney
+
+92 -= -= -= -= 00 - checkmoney
+
+97 ** - fadescreen
+
+A0= checkgender 
+
+80 *d 1= man 0= woman
+
+A2 $$$$ $$$$ $$$$ $$$$ - setmaptile
+
+A4 ** - setweather
+
+A5 - doweather
+
+B3 $$$$ - checkcoins
+
+B4 $$$$ - givecoins
+
+B5 $$$$ - takecoins
+
+B6 $$$$ ** 00 00 25 $$$$ - Wildbattle (second word is to be replaced with one of these. {0x42 0x01, 0x37 0x01, 0x38 0x01, 0x39 0x01}
+
+b6 xx xx ** yy yy
+
+Pokemon and battle preparations XXXX 
+Lv ** 
+Possession of items YYYY
+B7 and 25 used during fighting stage
+
+B7= specified fighting background 
+
+C7 ** - Change text colour
+
+BIGGER COMMAND
+
+
+1A 8000 $$$$ 1A 8001 $$$$ 09 00 - GIveitem
+
+19 8004 800D 79 $$$$ $$$$ $$$$ 00000000 00000000 27 1901 00 00000000 00000000 - givepokemon(I think)
+
+<pre>
+And also here the pokemon Hex codes.
+0100 = BULBASAUR
+0200 = IVYSAUR
+0300 = VENESAUR
+0400 = CHARMANDER
+0500 = CHARMELEON
+0600 = CHARIZARD
+0700 = SQUIRTLE
+0800 = WARTORTLE
+0900 = BLASTOISE
+0A00 = CATERPIE
+0B00 = METAPOD
+0C00 = BUTTERFREE
+0D00 = WEEDLE
+0E00 = KAKUNA
+0F00 = BEEDRILL
+1000 = PIDGEY
+1100 = PIDGEOTTO
+1200 = PIDGEOT
+1300 = RATTATA
+1400 = RATICATE
+1500 = SPEAROW
+1600 = FEAROW
+1700 = EKANS
+1800 = ARBOK
+1900 = PIKACHU
+1A00 = RAICHU
+1B00 = SANDSHREW
+1C00 = SANDSLASH
+1D00 = NIDORAN (FEMALE)
+1E00 = NIDORINA
+1F00 = NIDOQUEEN
+2000 = NIDORAN (MALE)
+2100 = NIDORINO
+2200 = NIDOKING
+2300 = CLEFAIRY
+2400 = CLEFABLE
+2500 = VULPIX
+2600 = NINETALES
+2700 = JIGGLYPUFF
+2800 = WIGGLYTUFF
+2900 = ZUBAT
+2A00 = GOLBAT
+2B00 = ODDISH
+2C00 = GLOOM
+2D00 = VILEPLUME
+2E00 = PARAS
+2F00 = PARASECT
+3000 = VENONAT
+3100 = VENOMOTH
+3200 = DIGLETT
+3300 = DUGTRIO
+3400 = MEOWTH
+3500 = PERSIAN
+3600 = PSYDUCK
+3700 = GOLDUCK
+3800 = MANKEY
+3900 = PRIMEAPE
+3A00 = GROWLITHE
+3B00 = ARCANINE
+3C00 = POLIWAG
+3D00 = POLIWHIRL
+3E00 = POLIWRATH
+3F00 = ABRA
+4000 = KADABRA
+4100 = ALAKAZAM
+4200 = MACHOP
+4300 = MACHOKE
+4400 = MACHAMP
+4500 = BELLSPROUT
+4600 = WEEPINBELL
+4700 = VICTREEBELL
+4800 = TENTACOOL
+4900 = TENTACRUEL
+4A00 = GEODUDE
+4B00 = GRAVELER
+4C00 = GOLEM
+4D00 = PONYTA
+4E00 = RAPIDASH
+4F00 = SLOWPOKE
+5000 = SLOWBRO
+5100 = MAGNEMITE
+5200 = MAGNETON
+5300 = FARFETCH'D
+5400 = DODUO
+5500 = DODRIO
+5600 = SEEL
+5700 = DEWGONG
+5800 = GRIMER
+5900 = MUK
+5A00 = SHELLDER
+5B00 = CLOYSTER
+5C00 = GASTLY
+5D00 = HAUNTER
+5E00 = GENGAR
+5F00 = ONIX
+6000 = DROWZEE
+6100 = HYPNO
+6200 = KRABBY
+6300 = KINGLER
+6400 = VOLTORB
+6500 = ELECTRODE
+6600 = EXEGGCUTE
+6700 = EXEGGUTOR
+6800 = CUBONE
+6900 = MAROWAK
+6A00 = HITMONLEEE
+6B00 = HITMONCHAN
+6C00 = LICKITUNG
+6D00 = KOFFING
+6E00 = WEEZING
+6F00 = RHYHORN
+7000 = RHYDON
+7100 = CHANSEY
+7200 = TANGELA
+7300 = KANGASKHAN
+7400 = HORSEA
+7500 = SEADRA
+7600 = GOLDEEN
+7700 = SEAKING
+7800 = STARYU
+7900 = STARMIE
+7A00 = MR. MIME
+7B00 = SCYTHER
+7C00 = JYNX
+7D00 = ELECTABUZZ
+7E00 = MAGMAR
+7F00 = PINSIR
+8000 = TAUROS
+8100 = MAGIKARP
+8200 = GYARADOS
+8300 = LAPRAS
+8400 = DITTO
+8500 = EEVEE
+8600 = VAPOREON
+8700 = JOLTEON
+8800 = FLAREON
+8900 = PORYGON
+8A00 = OMANYTE
+8B00 = OMASTAR
+8C00 = KABUTO
+8D00 = KABUTOPS
+8E00 = AERODACTYL
+8F00 = SNORLAX
+9000 = ARTICUNO
+9100 = ZAPDOS
+9200 = MOLTRES
+9300 = DRATINI
+9400 = DRAGONAIR
+9500 = DRAGONITE
+9600 = MEWTWO
+9700 = MEW
+9800 = CHIKORITA
+9900 = BAYLEEF
+9A00 = MEGANIUM
+9B00 = CYNDAQUIL
+9C00 = QUILAVA
+9D00 = TYPLOSION
+9E00 = TOTODILE
+9F00 = CROCONAW
+A000 = FERALIGATR
+A100 = SENTRET
+A200 = FURRET
+A300 = HOOTHOOT
+A400 = NOCTOWL
+A500 = LEDYBA
+A600 = LEDIAN
+A700 = SPINARAK
+A800 = ARIADOS
+A900 = CROBAT
+AA00 = CHINCHOU
+AB00 = LANTURN
+AC00 = PICHU
+AD00 = CLEFFA
+AE00 = IGGLYBUFF
+AF00 = TOGEPI
+B000 = TOGETIC
+B100 = NATU
+B200 = XATU
+B300 = MAREEP
+B400 = FLAAFFY
+B500 = AMPHAROS
+B600 = BELLOSSOM
+B700 = MARRILL
+B800 = AZUMARILL
+B900 = SUDOWOODO
+BA00 = POLITOED
+BB00 = HOPPIP
+BC00 = SKI PLOOM
+BD00 = JUMPLUFF
+BE00 = AIPOM
+BF00 = SUNKERN
+C000 = SUNFLORA
+C100 = YANMA
+C200 = WOOPER
+C300 = QUAGSIRE
+C400 = ESPEON
+C500 = UMBREON
+C600 = MURKROW
+C700 = SLOWKING
+C800 = MISDREAVUS
+C900 = UNOWN
+CA00 = WOBBUFFET
+CB00 = GIRAFARIG
+CC00 = PINECO
+CD00 = FORRETRESS
+CE00 = DUNSPARCE
+CF00 = GLIGAR
+D000 = STEELIX
+D100 = SNUBBULL
+D200 = GRANBULL
+D300 = QWILFISH
+D400 = SCIZOR
+D500 = SHUCKLE
+D600 = HERACROSS
+D700 = SNEASEL
+D800 = TEDDIURSA
+D900 = URSARING
+DA00 = SLUGMA
+DB00 = MAGCARGO
+DC00 = SWINUB
+DD00 = PILOSWINE
+DE00 = CORSOLA
+DF00 = REMORAID
+E000 = OCTILLERY
+E100 = DELIBIRD
+E200 = MANTINE
+E300 = SKARMORY
+E400 = HOUNDOUR
+E500 = DOUNDOOM
+E600 = KINGDRA
+E700 = PHANPY
+E800 = DONPHAN
+E900 = PORYGON2
+EA00 = STANTLER
+EB00 = SMEARGLE
+EC00 = TYROGUE
+ED00 = HITMONTOP
+EE00 = SMOOCHUM
+EF00 = ELEKID
+F000 = MAGBY
+F100 = MILTANK
+F200 = BLISSEY
+F300 = RAIKOU
+F400 = ENTEI
+F500 = SUICINE
+F600 = LARVITAR
+F700 = PUPITAR
+F800 = TYRANITAR
+F900 = LUGIA
+FA00 = HO-OH
+FB00 = CELEBI
+1501 = TREECKO
+1601 = GROVYLE
+1701 = SCEPTILE
+1801 = TORCHIC
+1901 = COMBUSKEN
+1A01 = BLAZIKEN
+1B01 = MUDKIP
+1C01 = MARSHTOMP
+1D01 = SWAMPERT
+1E01 = POOCHYENA
+1F01 = MIGHTYENA
+2001 = ZIGZAGOON
+2101 = LINOONE
+2201 = WURMPLE
+2301 = SILCOON
+2401 = BEAUTIFLY
+2501 = CASCOON
+2601 = DUSTOX
+2701 = LOTAD
+2801 = LOMBRE
+2901 = LUDICOLO
+2A01 = SEEDOT
+2B01 = NUZLEAF
+2C01 = SHIFTRY
+2D01 = NINCADA
+2E01 = NINJASK
+2F01 = SHEDINJA
+3001 = TAILLOW
+3101 = SWELLOW
+3201 = SHROOMISH
+3301 = BRELOOM
+3401 = SPINDA
+3501 = WINGULL
+3601 = PELIPPER
+3701 = SURSKIT
+3801 = MASQUERAIN
+3901 = WAILMER
+3A01 = WAILORD
+3B01 = SKITTY
+3C01 = DELCATTY
+3D01 = KECLEON
+3E01 = BALTOY
+3F01 = CLAYDOL
+4001 = NOSEPASS
+4101 = TORKOAL
+4201 = SABLEYE
+4301 = BARBOACH
+4401 = WHISCASH
+4501 = LUVDISC
+4601 = CORPHISH
+4701 = CRAWDAUNT
+4801 = FEEBAS
+4901 = MILOTIC
+4A01 = CARVANHA
+4B01 = SHARPEDO
+4C01 = TRAPINCH
+4D01 = VIBRAVA
+4E01 = FLYGON
+4F01 = MAKUHITA
+5001 = HARIYAMA
+5101 = ELECTRIKE
+5201 = MANECTRIC
+5301 = NUMEL
+5401 = CAMERUPT
+5501 = SPHEAL
+5601 = SEALEO
+5701 = WALREIN
+5801 = CACNEA
+5901 = CACTURNE
+5A01 = SNORUNT
+5B01 = GLALIE
+5C01 = LUNATONE
+5D01 = SOLROCK
+5E01 = AZURILL
+5F01 = SPOINK
+6001 = GRUMPIG
+6101 = PLUSLE
+6201 = MINUN
+6301 = MAWILE
+6401 = MEDITITE
+6501 = MEDICHAM
+6601 = SWABLU
+6701 = ALTARIA
+6801 = WYNAUT
+6901 = DUSKULL
+6A01 = DUSCLOPS
+6B01 = ROSELIA
+6C01 = SLAKOTH
+6D01 = VIGOROTH
+6E01 = SLAKING
+6F01 = GULPIN
+7001 = SWALOT
+7101 = TROPIUS
+7201 = WHISMUR
+7301 = LOUDRED
+7401 = EXPLOUD
+7501 = CLAMPERL
+7601 = HUNTAIL
+7701 = GOREBYSS
+7801 = ABSOL
+7901 = SHUPPET
+7A01 = BANNETE
+7B01 = SEVIPER
+7C01 = ZANGOOSE
+7D01 = RELICANTH
+7E01 = ARON
+7F01 = LAIRON
+8001 = AGGRON
+8101 = CASTFORM
+8201 = VOLBEAT
+8301 = ILLUMISE
+8401 = LILEEP
+8501 = CRADILY
+8601 = ANORITH
+8701 = ARMALDO
+8801 = RALTS
+8901 = KIRLIA
+8A01 = GARDEVOIR
+8B01 = BAGON
+8C01 = SHELGON
+8D01 = SALAMENCE
+8E01 = BELDUM
+8F01 = METANG
+9001 = METAGROSS
+9101 = REGI ROCK
+9201 = REGICE
+9301 = REGI STEEL
+9401 = KYOGRE
+9501 = GROUDON
+9601 = RAYQUAZA
+9701 = LATIAS
+9801 = LATIOS
+9901 = JIRACHI
+9A01 = DEOXYS
+9B01 = CHIMECHO
+
+_________________________________________________________________
+Item: Hex Values 
+
+Master Ball: 0100 
+Ultra Ball: 0200 
+Great Ball: 0300 
+Poké Ball: 0400 
+Safari Ball: 0500 
+Net Ball: 0600 
+Dive Ball: 0700 
+Nest Ball: 0800 
+Repeat Ball: 0900 
+Timer Ball: 0A00 
+Luxury Ball: 0B00 
+Premier Ball: 0C00 
+Potion: 0D00 
+Antidote: 0E00 
+Burn Heal: 0F00 
+Ice Heal: 1000 
+Awakening: 1100 
+Parlyz Heal: 1200 
+Full Restore: 1300 
+Max Potion: 1400 
+Hyper Potion: 1500 
+Super Potion: 1600 
+Full Heal: 1700 
+Revive: 1800 
+Max Revive: 1900 
+Fresh Water: 1A00 
+Soda Pop: 1B00 
+Lemonade: 1C00 
+Moomoo Milk: 1D00 
+Energy Powder: 1E00 
+Energy Root: 1F00 
+Heal Powder: 2000 
+Revival Herb: 2100 
+Ether: 2200 
+Max Ether: 2300 
+Elixer: 2400 
+Max Elixer: 2500 
+Lava Cookie: 2600 
+Blue Flute: 2700 
+Yellow Flute: 2800 
+Red Flute: 2900 
+Black Flute: 2A00 
+White flute: 2B00 
+Berry Juice: 2C00 
+Sacred Ash: 2D00 
+Shoal Salt: 2E00 
+Shoal Shell: 2F00 
+Red Shard: 3000 
+Blue shard: 3100 
+Yellow Shard: 3200 
+Green Shard: 3300
+
+Hentai Mag: 3400
+
+HP Up: 3F00 
+Protein: 4000 
+Iron: 4100 
+Carbos: 4200 
+Calcium: 4300 
+Rare Candy: 4400 
+PP Up: 4500 
+Zinc: 4600 
+PP Max: 4700 
+Guard Spec. 4900 
+Dire Hit: 4A00 
+X Attack: 4B00 
+X Defend: 4C00 
+X Speed: 4D00 
+X Accuracy: 4E00 
+X Special: 4F00 
+Poké Doll: 5000 
+Fluffy Tail: 5100 
+Super Repel: 5300 
+Max Repel: 5400 
+Escape Rope: 5500 
+Repel: 5600 
+Sun Stone: 5D00 
+Oak's Parcel: 5D01 
+Moon Stone: 5E00 
+poke flute: 5E01
+Fire Stone: 5F00 
+secret key: 5F01
+Thunder Stone: 6000 
+bike voucher: 6001
+Water Stone: 6100 
+gold teeth: 6101
+Leaf Stone: 6200 
+old ambar: 6201
+card key: 6301
+lift key: 6401
+helix fossil: 6501
+dome fossil: 6601
+Tiny Mushroom: 6700 
+silphscope: 6701
+Big Mushroom: 6800 
+bicycle: 6801
+town map: 6901
+Pearl: 6A00 
+vs seeker: 6A01
+Big Pearl: 6B00 
+fame checker: 6B01
+Stardust: 6C00 
+tm case: 6C01
+Star Piece: 6D00 
+berrypouch: 6D01
+Nugget: 6E00 
+teachy tv: 6E01
+Heart Scale: 6F00 
+tri-pass: 6F01
+rainbow pass: 7001
+tea: 7101
+mystic ticket: 7201
+aurora ticket: 7301
+powder jar: 7401 
+ruby: 7501
+sapphire: 7601
+Orange Mail: 7900 
+Harbor Mail: 7A00 
+Glitter Mail: 7B00 
+Mech Mail: 7C00 
+Wood mail: 7D00 
+Wave Mail: 7E00 
+Bead Mail: 7F00 
+Shadow Mail: 8000 
+Tropic Mail: 8100 
+Dream Mail: 8200 
+Fab Mail: 8300 
+Retro Mail: 8400 
+Cheri Berry: 8500 
+Chesto Berry: 8600 
+Pecha Berry: 8700 
+Rawst Berry: 8800 
+Aspear Berry: 8900 
+Leppa Berry: 8A00 
+Oran Berry: 8B00 
+Persim Berry: 8C00 
+Lum Berry: 8D00 
+Sitrus Berry: 8E00 
+Figy Berry: 8F00 
+Wiki Berry: 9000 
+Mago Berry: 9100 
+Aguav Berry: 9200 
+Iapapa Berry: 9300 
+Razz Berry: 9400 
+Bluk Berry: 9500 
+Nanab Berry: 9600 
+Wepear Berry: 9700 
+Pinap Berry: 9800 
+Pomeg Berry: 9900 
+Kelpsy Berry: 9A00 
+Qualot Berry: 9B00 
+Hondew Berry: 9C00 
+Grepa Berry: 9D00 
+Tamato Berry: 9E00 
+Cornn Berry: 9F00 
+Magost Berry: A000 
+Rabuta Berry: A100 
+Nomel Berry: A200 
+Spelon Berry: A300 
+Pamtre Berry: A400 
+Watmel Berry: A500 
+Durin Berry: A600 
+Belue Berry: A700 
+Liechi Berry: A800 
+Ganlon Berry: A900 
+Salac Berry: AA00 
+Petaya Berry: AB00 
+Apicot Berry: AC00 
+Lansat Berry: AD00 
+Starf Berry: AE00 
+Enigma Berry: AF00 
+Bright Powder: B300 
+White Herb: B400 
+Macho Brace: B500 
+Exp. Share: B600 
+Quick Claw: B700 
+Soothe Bell: B800 
+Mental Herb: B900 
+Deep Sea Tooth: C000 
+Deep Sea Scale: C100 
+Smoke Ball: C200 
+Everstone: C300 
+Focus Band: C400 
+Lucky Egg: C500 
+Scope Lens: C600 
+Metal Coat: C700 
+Leftovers: C800 
+Dragon Scale: C900 
+Light Ball: CA00 
+Soft Sand: CB00 
+Hard Stone: CC00 
+Miracle Seed: CD00 
+Black Glasses: CE00 
+Black Belt: CF00 
+Magnet: D000 
+Mystic Water: D100 
+Sharp Beak: D200 
+Poison Barb: D300 
+Never Melt Ice: D400 
+Spell Tag: D500 
+Twisted Spoon: D600 
+Charcoal: D700 
+Dragon Fang: D800 
+Silk Scarf: D900 
+Up-Grade: DA00 
+Shell Bell: DB00 
+Sea Incense: DC00 
+Lax Inscense: DD00 
+Lucky Punch: DE00 
+Metal Powder: DF00 
+Thick Club: E000 
+Stick: E100 
+Red Scarf: FE00 
+Blue Scarf: FF00 
+Green Scarf: 0101 
+Yellow Scarf: 0201 
+Mach Bike: 0301 
+Coin Case: 0401 
+Item Finder: 0501 
+Old Rod: 0601 
+Good Rod: 0701 
+Super Rod: 0801 
+S.S. Ticket: 0901 
+Contest Pass: 0A01 
+Wailmer Pail: 0C01 
+Devon Goods: 0D01 
+Soot sack: 0E01 
+Basement Key: 0F01 
+Acro Bike: 1001 
+Case: 1101 
+Letter: 1201 
+Eon ticket: 1301 
+Red Orb: 1401 
+Blue Orb: 1501 
+Scanner: 1601 
+Go-Goggles: 1701 
+Meteorite: 1801 
+RM. 1 Key: 1901 
+RM. 2 Key: 1A01 
+RM. 4 Key: 1B01 
+RM. 6 Key: 1C01 
+Storage Key: 1D01 
+Root Fossil: 1E01 
+Claw Fossil: 1F01 
+Devon Scope: 2001 
+TM01: 2101 
+TM02: 2201 
+TM03: 2301 
+TM04: 2401 
+TM05: 2501 
+TM06: 2601 
+TM07: 2701 
+TM08: 2801 
+TM09: 2901 
+TM10: 2A01 
+TM11: 2B01 
+TM12: 2C01 
+TM13: 2D01 
+TM14: 2E01 
+TM15: 2F01 
+TM16: 3001 
+TM17: 3101 
+TM18: 3201 
+TM19: 3301 
+TM20: 3401 
+TM21: 3501 
+TM22: 3601 
+TM23: 3701 
+TM24: 3801 
+TM25: 3901 
+TM26: 3A01 
+TM27: 3B01 
+TM28: 3C01 
+TM29: 3D01 
+TM30: 3E01 
+TM31: 3F01 
+TM32: 4001 
+TM33: 4101 
+TM34: 4201 
+TM35: 4301 
+TM36: 4401 
+TM37: 4501 
+TM38: 4601 
+TM39: 4701 
+TM40: 4801 
+TM41: 4901 
+TM42: 4A01 
+TM43: 4B01 
+TM44: 4C01 
+TM45: 4D01 
+TM46: 4E01 
+TM47: 4F01 
+TM48: 5001 
+TM49: 5101 
+TM50: 5201 
+HM01: 5301 
+HM02: 5401 
+HM03: 5501 
+HM04: 5601 
+HM05: 5701 
+HM06: 5801 
+HM07: 5901 
+HM08: 5A01
+________________________________________________________________________________________________________________________________________
+Crys: Go to 791ee in FR/LG change the 06 in FR or the 03 in LG. The crys are the pokemons number in hex ex. charizard is 6 so its 06.
+
+Dabomstew's stuff:
+80 ** $$$$ - displayitem
+
+82 ** $$$$ - displaymove
+
+7E ** - displayfirstpokemon
+
+7C $$$$ - checkpartyformove
+
+AC $$$$ $$$$ - opendoor [args: xpos, ypos]
+
+AD $$$$ $$$$ - closedoor [args: xpos, ypos]
+
+AE - waitfordooranimation?
+
+CA - boxtypeperson
+CB - boxtypesign
+
+DF xxxxxx08 - pokenav-call-style msgbox2 [Emerald only] 
+
+If you see any errors please let us know!
+
+Ask one of us before posting anywhere.
+
+©Foofatron and Thethethethe 2007-2222
+credits: Dabomstew.
+
+
+FR Deep Scan
+
+I have made a list of UNlz offsets in FR in deep scan I only put the begging offset if it was multiple things.
+I didn't do everything just most of the good moves and important stuff. The rest was just blurs.
+
+Deep Scan FR:
+
+Pokedex pic 3479
+Badge Part 3473
+Key Items 3379
+Equipment items 3330
+Berries 3284
+Mail 3272 
+misc items 3253
+evolution stones 3258
+Stat boost items 3248
+Pokemon battle items 3226
+Pokeballs 3214
+Female pokebag 3200
+TM pic 3194
+Pokedex pic 3189
+Male pokebag 3186
+status effects 3181
+surf battle move 3171
+some move 3170
+Sky attack 3169
+fissure 3167
+dig 3167
+false swipe 3155
+berry machine 3151
+another part of the berry machine(256) 3148
+A sweat move 3144
+sheer cold 3129
+battle background 3109
+battle background 3106
+sprites 2950
+pokemon sprites 2080
+moves 1900
+pokecontest people 1895
+pokemoves and stuff 1702
+pokemon zero 1700
+not sure 1202
+game coner machine 1200
+You(M+F), Oak and rival front pic(intro pic)(hit the - once for normal size 1177
+islands on world map route 1072
+World map routes 1072
+pokeballs on pokedex 1069
+badges (only 6) 1068
+pokedex backgrounds for types +dex pokeballs 1056
+maybe a pokedex part? 1054
+braille stuff? 1053
+places background (when u enter a place these pop up)(all of these have raws after them and can be edited in cyclone) 1003
+speacial pc background 1001
+enimy battle patch the grass thats under the battling pokemon 997
+sprites in battle 994
+ending credit pokemon 982
+intro gangar and nindoran fighting 954
+titlescreen stuff 940
+something 928
+poke map 910
+World map 909
+sprites 907
+all badges 786
+fire on titlescreen 769
+flash on title screen just before it shows 768
+tilesets 268
+battle background 200
+grass 151
+grass battleground 149
+battleground 143
+
+Foofatron 2008
+</pre>
+
+==External Links==
+* [http://darkn.romhackhispano.org/tutoriales/hacking_pokemon.php?origen=doc_traduc Hacking Hex a lot Pokémon editions page in Spanish]
+
+[[de:Pokémon FireRed]]
