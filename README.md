@@ -6,9 +6,9 @@ This covers my process of creating a PSP Pokemon Save Editor for Pokemon Fire Re
 
 Note: I’m using the USA version of Pokemon Fire Red. I have not tested with other regions.
 
-First I played about 2 hours of Pokemon. I got my first two Pokemon and evolved to Ivysaur and Metapod. 
+First I played about 1 hour of Pokemon Fire red. I got my first two Pokemon and evolved to Ivysaur and Metapod. 
 
-My bag contained Antidote x2 and Poke Ball x 16. This is what I used as my baseline to search for in the save file.
+My bag contained Antidote x2 and Poke Ball x 16. This is what I used as my baseline to search for in the save file. I also have my first badge and a TM case.
 
 As we are starting completely from scratch, I’m using HEX editing to manipulate the save files. I run OS X and decided to use HEX Fiend as it came up first on bing.
 
@@ -16,9 +16,9 @@ Since we are editing save files from the PSP I’ll be using UO GPsp Kai emulato
 
 Lets start..
 
-TLDR; PSP app to edit Pokemon GBA games
+TLDR; building a PSP app to edit Pokemon GBA games
 
-# Finding the items (sort of)
+# Day 1: Finding the items
 
 First on my list is to have the ability to edit how many items at each slot in the bag there are. For example, currently I have 2 Antidotes in my bag. I want to have 99, so let’s figure out how to get 99.
 
@@ -105,7 +105,100 @@ If we actually look at the HEX in the save correctly, the section containing 920
 
 So I search for 0529 just to count how many times it appears. It appears exactly how many items unique items exist but a new value appears, 0529A5D5. I look up 920E, same thing but another new value appears 920E512D once. These seem very specific, but looking it up on Bing I get no results. So I boot up my VPN and try Google. Unfortunately nothing. I have more questions then answers at this point.
 
+On the plus side, I was able to find the Poke Ball bag section. Poke Ball can be found under: 0400830E
+
+and then everything came clear. Checksum checking.
+
+Here's a great wiki entry on this very problem we are seeing:
+
+https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III
+
+So what does that mean? Well, every time I make a change to a save section I need to generate a checksum for that save state section. This is how the game ensures the save file is good.
+
+Gamefreak did this probably to ensure if someone turned off their game while saving, nothing would get corrupted. Generating the checksum is the last part of saving most likely.
+
+Also here's a great article on how save states work on GEN 3 GBA games:
+https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III#Save_index
+
+Found this little code snippit for R/S but not sure if it applies to FR/LG
+
+````
+int Chksum(int length, int *Data)
+{
+int Chk,i,tmp;
+length = length>>2;
+Chk=0;
+for(i=0; i<length; i++)
+	Chk += Data[i];
+
+tmp = Chk>>16;
+tmp +=Chk;
+
+Chk = (tmp&0xFFFF);
+
+return Chk;
+}
+````
+
+
+
+In the end, we now know there are two save sections and we need to generate a valid checksum if we change anything.
+
+TLDR; we need a checksum to edit
+
+# Day 2: Creating a validating checksum
+
+Yesterday was an interested event of discovery today we have a mission. Create a valid checksum generator so that when we do change bag items, the game thinks it's a proper save change.
+
+The resource I'll be using is as follows: https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III#Section_1_-_team_.2F_items
+
+As we can see there's different offsets and sizes for everything (key items, ball bag, berry pocket, etc). but since we are so familiar with the TM Case at the moment, I'm going to focus on it.
+
+### Understanding the TM Case offset and size
+
+So through looking around on the internet I found a C/C++ library that covers the checksum sort of. 
+
+libspec is A pokemon save editing library in C. It's pretty advance and covers 21 different pokemon games. We are only interested in the GBA ones, specifically FireRed obviously.
+
+After looking through the source, we can find a simple code (in c) for the checksum requirements.
+
+````
+/**
+ * This is used by the GBA to calculate block checksums.
+ * @brief Calculates a 16-bit block checksum of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The 16-bit block checksum of the given data.
+ */
+uint16_t gba_block_checksum(const uint8_t *ptr, size_t size) {
+	uint32_t sum = 0;
+	for(size_t i = 0; i < size; i += 4) {
+		sum += *(uint32_t *)(ptr + i);
+	}
+	return sum + (sum >> 16);
+}
+````
 
 
 
 
+
+
+# Random Links 
+
+I'll post random links and references that might be useful in the future
+
+#### Save information
+- https://projectpokemon.org/forums/forums/topic/38441-attn-gen-iii-frlg-save-editor-developers-joyful-game-corner/
+- https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III#Item_entry
+
+
+#### HEX Codes
+- http://datacrystal.romhacking.net/wiki/Pokémon_FireRed_and_LeafGreen:Tutorials
+- https://bulbapedia.bulbagarden.net/wiki/List_of_items_by_index_number_(Generation_III) (R/S)
+
+#### Event Generation
+- https://projectpokemon.org/forums/forums/topic/39517-gen-3-event-generation-algorithm-research-10anniv-etc/
+
+#### Libraries
+- https://github.com/Chase-san/libspec
