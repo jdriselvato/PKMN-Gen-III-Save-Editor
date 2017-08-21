@@ -158,6 +158,8 @@ As we can see there's different offsets and sizes for everything (key items, bal
 
 So through looking around on the internet I found a C/C++ library that covers the checksum sort of. 
 
+https://github.com/Chase-san/libspec/
+
 libspec is A pokemon save editing library in C. It's pretty advance and covers 21 different pokemon games. We are only interested in the GBA ones, specifically FireRed obviously.
 
 After looking through the source, we can find a simple code (in c) for the checksum requirements.
@@ -179,6 +181,8 @@ uint16_t gba_block_checksum(const uint8_t *ptr, size_t size) {
 }
 ````
 
+and fortunately, Chase San seems to have done all the research and heavy lifting for us. I'll be using his libspec from now one.
+
 
 
 
@@ -191,7 +195,7 @@ I'll post random links and references that might be useful in the future
 #### Save information
 - https://projectpokemon.org/forums/forums/topic/38441-attn-gen-iii-frlg-save-editor-developers-joyful-game-corner/
 - https://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III#Item_entry
-
+- http://furlocks-forest.net/wiki/?page=Pokemon_GBA_Save_Format
 
 #### HEX Codes
 - http://datacrystal.romhacking.net/wiki/Pokémon_FireRed_and_LeafGreen:Tutorials
